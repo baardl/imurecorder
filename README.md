@@ -13,6 +13,7 @@ http://docs.phonegap.com/getting-started/1-install-phonegap/cli/
 
 
 __Cordova build apk__
+
 1. cordova platform add android --save
 1. cordova build android
 1. copy .apk to mobile device
