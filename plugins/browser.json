@@ -12,6 +12,9 @@
         },
         "cordova-plugin-file": {
             "PACKAGE_NAME": "com.bardlind.imurecorder"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "com.bardlind.imurecorder"
         }
     },
     "dependent_plugins": {}
