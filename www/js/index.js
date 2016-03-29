@@ -38,6 +38,10 @@ function onDeviceReady() {
 		printFile();
 	}, false);
 
+	var options = { frequency: 10000 };  // Update every 3 seconds
+
+	var watchID = navigator.accelerometer.watchAcceleration(logAcceleration, onError, options);
+
 
 
 }
@@ -52,6 +56,9 @@ function printFile() {
 
 		reader.onloadend = function(e) {
 			console.log(this.result);
+			var element = document.getElementById('logfile');
+
+			element.innerHTML = this.result;
 		};
 
 		reader.readAsText(file);
@@ -87,3 +94,24 @@ function justForTesting() {
 	}, fail);
 
 }
+
+function logAcceleration(acceleration) {
+	var accLog = 'Acceleration;' + acceleration.x +';'+acceleration.y+';'+acceleration.z+';'+acceleration.timestamp + '\n'
+	writeLog(accLog);
+
+	//document.getelementbyid("accX").innerHTML="hei";
+	var element = document.getElementById('accelerometer');
+	element.innerHTML=accLog;
+
+	/*
+	element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
+		'Acceleration Y: ' + acceleration.y + '<br />' +
+		'Acceleration Z: ' + acceleration.z + '<br />' +
+		'Timestamp: ' + acceleration.timestamp + '<br />';
+		*/
+}
+
+function onError() {
+	alert('onError!');
+}
+
