@@ -74,7 +74,7 @@ function printFile() {
 	}, fail);
 	*/
 	getData();
-	//postData();
+	postData();
 	//TODO uploadFile(logOb);
 }
 
@@ -190,12 +190,33 @@ request.send();
 }
 
 function postData() {
-	console.log("postData");
+	console.log("postData3");
 	formData = {
 		// all your parameters here
-		logfile: $("#logfile"),
+		logfile: 'hei', //$("#logfile"),
 		test: 'test'
 	}
+	var http = new XMLHttpRequest();
+	var url = "http://192.168.1.220:8080/myapp/myresource/insert";
+	//var params = "lorem=ipsum&name=binny";
+	http.open("POST", url, true);
+
+//Send the proper header information along with the request
+	http.setRequestHeader("Content-type", "application/json");
+	//http.setRequestHeader("Content-length", params.length);
+	//http.setRequestHeader("Connection", "close");
+
+	http.onreadystatechange = function() {//Call a function when the state changes.
+		if(http.readyState == 4 && http.status == 200) {
+			var data = http.responseText;
+			var logfile = document.getElementById("logfile");
+			logfile.innerHTML = data;
+		} else {
+			console.log("http: " + http.status);
+		}
+	}
+	http.send(formData);
+	/*
 
 	$.ajax({
 		type: 'POST',
@@ -211,6 +232,8 @@ function postData() {
 		}
 	});
 	console.log("ajax was called");
+	*/
+
 
 }
 
