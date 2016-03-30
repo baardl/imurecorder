@@ -190,12 +190,13 @@ request.send();
 }
 
 function postData() {
-	console.log("postData3");
+	console.log("postData");
 	formData = {
 		// all your parameters here
 		logfile: 'hei', //$("#logfile"),
 		test: 'test'
 	}
+
 	var http = new XMLHttpRequest();
 	var url = "http://192.168.1.220:8080/myapp/myresource/insert";
 	//var params = "lorem=ipsum&name=binny";
@@ -215,7 +216,7 @@ function postData() {
 			console.log("http: " + http.status);
 		}
 	}
-	http.send(formData);
+	http.send(JSON.stringify(formData));
 	/*
 
 	$.ajax({
@@ -225,14 +226,17 @@ function postData() {
 		dataType: "json",
 		data: formData,
 		success: function(data) {
+			writeLog("Success " + data);
 			console.log("Post ok")
 		},
 		error: function(data) {
+			writeLog("Failure " + data);
 			console.log("Failed " + data)
 		}
 	});
 	console.log("ajax was called");
 	*/
+
 
 
 }
